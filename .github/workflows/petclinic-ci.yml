@@ -31,4 +31,6 @@ jobs:
         distribution: ${{ matrix.distribution}}
     - name: Build with mvn
       run: mvn clean package -DskipTests -Dspring.profiles.active=mysql
+    - name: Junit test
+      run: mvn test -Dcheckstyle.skip
 
