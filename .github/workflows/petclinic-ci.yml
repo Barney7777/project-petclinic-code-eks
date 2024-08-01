@@ -123,10 +123,10 @@ jobs:
         path: trivy-image-report.html
 
     - name: Configure AWS Credentials
-      if: github.ref == 'refs/heads/dev' && github.event_name == 'push' || github.ref == 'refs/heads/main' && github.event_name == 'push'
+      # if: github.ref == 'refs/heads/dev' && github.event_name == 'push' || github.ref == 'refs/heads/main' && github.event_name == 'push'
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role--to-assume: ${{ secrets.AWS_ROLE_PETCLINIC_APP_FRONTEND }}
+        role--to-assume: ${{ secrets.AWS_ROLE_PETCLINIC_APP }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
     - name: Login to Amazon ECR Private Registry
