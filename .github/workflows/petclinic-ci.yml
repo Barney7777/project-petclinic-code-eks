@@ -13,13 +13,13 @@ on:
 
 jobs:
   build-test-vulnerabilities-scan:
-  runs-on: ubuntu-latest
-  defaults:
-    run:
-      shell: bash
-  strategy:
-    matrix:
-      java-version: [17]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      matrix:
+        java-version: [17]
     steps:
     - name: Checkout Source Code
       uses: actions/checkout@v4
