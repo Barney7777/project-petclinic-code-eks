@@ -45,7 +45,20 @@ jobs:
 
     - name: Run JUnit Tests
       run: mvn test -Dcheckstyle.skip
+    - name: Upload JUnit Test Report
+      uses: actions/upload-artifacts@v4
+      with:
+        name: junit-test-report
+        path: target/surefire-reports/*.xml
 
+    - name: SAST SonarCloud Code Quality Check
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets._GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        arg: >
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.sources=. -Dsonar.verbose=true #magic___^_^___line
     - name: Setup JFrog CLI
       uses: jfrog/setup-jfrog-cli@v4
       with:
