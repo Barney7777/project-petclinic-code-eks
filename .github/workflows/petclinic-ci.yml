@@ -66,4 +66,3 @@ jobs:
     - name: Push artifacts to jfrog
       run: |
         jfrog rt upload --url  http://3.27.70.165:8082/artifactory --access-token ${{ secrets.JFROG_TOKEN }} target/*.jar petclinic
-
