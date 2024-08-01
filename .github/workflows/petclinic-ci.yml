@@ -1,0 +1,32 @@
+name: Petclinic CI
+
+on:
+  push:
+    branches:
+    - main
+    - dev
+    - devops-barney
+  pull_request:
+    branches:
+    - main
+    - dev
+
+jobs:
+  build-test-vulnerabilities-scan:
+  runs-on: ubuntu-latest
+  defaults:
+    run:
+      shell: bash
+  strategy:
+    matrix:
+      java-version: [17]
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+    - name: Use JAVA ${{ matrix.java-version }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ matrix.java-version }}
+    - name: Build with mvn
+      run: mvn clean package -DskipTests,spring.profiles.active=mysql
+
