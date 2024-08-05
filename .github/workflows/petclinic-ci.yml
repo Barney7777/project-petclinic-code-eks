@@ -159,7 +159,7 @@ jobs:
       with:
         repository: Barney7777/petclinic-gitops
         ref: dev
-        # token: ${{ secrets._GITHUB_TOKEN }}
+        token: ${{ secrets._GITHUB_TOKEN }}
         path: petclinic-gitops
 
     - name: Update Image in Gitops Repo
